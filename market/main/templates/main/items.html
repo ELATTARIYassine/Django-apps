@@ -16,6 +16,7 @@
     {% for item in items %}
         {% include 'main/includes/items_modals.html' %}
     {% endfor %}
+    {% if len(items) != 0 %}
     <table class="table table-hover">
         <thead>
         <tr>
@@ -55,4 +56,5 @@
         {% endfor %}
         </tbody>
     </table>
+    {% endif %}
 {% endblock %}
