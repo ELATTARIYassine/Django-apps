@@ -16,9 +16,9 @@
     {% for item in items %}
         {% include 'main/includes/items_modals.html' %}
     {% endfor %}
-    {% if len(items) != 0 %}
     <table class="table table-hover">
         <thead>
+        {% if items.all %}
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
@@ -26,6 +26,7 @@
             <th scope="col">Price</th>
             <th scope="col">Options</th>
         </tr>
+        {% endif %}
         </thead>
         <tbody>
         {% for item in items %}
@@ -53,8 +54,9 @@
                     </button>
                 </td>
             </tr>
+        {% empty %}
+            <h2>Sorry, no products were found.</h2>
         {% endfor %}
         </tbody>
     </table>
-    {% endif %}
 {% endblock %}
