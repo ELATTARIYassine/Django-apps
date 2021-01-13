@@ -8,8 +8,16 @@ def homepage(request):
     return render(request, template_name='main/home.html')
 
 def itemspage(request):
-    items = Item.objects.all()
-    return render(request, template_name='main/items.html', context={'items': items})
+    if request.method == 'GET':
+        items = Item.objects.filter(owner=None)
+        return render(request, template_name='main/items.html', context={'items': items})
+    if request.method == 'POST':
+        purchased_item = request.POST.get('purshased-item')
+        if purchased_item:
+            purchased_item_object = Item.objects.get(name=purchased_item)
+            purchased_item_object.owner = request.user
+            purchased_item_object.save()
+        return redirect('items')
 
 def loginpage(request):
     if request.method == 'GET':
