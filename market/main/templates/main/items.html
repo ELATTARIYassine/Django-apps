@@ -1,0 +1,58 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Items page
+{% endblock %}
+
+{% block style %}
+    <style>
+        th, td {
+            vertical-align: middle !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% for item in items %}
+        {% include 'main/includes/items_modals.html' %}
+    {% endfor %}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Price</th>
+            <th scope="col">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <th scope="row">
+                    {{ item.pk }}
+                </th>
+                <td>
+                    {{ item.name }}
+                </td>
+                <td>
+                    <img width="64px" src="{{ item.image_url }}" alt="">
+                </td>
+                <td>
+                    {{ item.price }}
+                </td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary"
+                            data-toggle="modal" data-target="#Modal-MoreInfo-{{ item.pk }}">
+                        More Info
+                    </button>
+                    <button type="button" class="btn btn-outline-success"
+                            data-toggle="modal" data-target="#Modal-PurchaseConfirm-{{ item.pk }}">
+                        Purchase this Item
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
