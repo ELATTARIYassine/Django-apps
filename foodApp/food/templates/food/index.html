@@ -9,6 +9,8 @@
                     <h5 class="card-title">{{ item.name }} -- ({{ item.price }}$)</h5>
                     <p class="card-text">{{ item.description }}.</p>
                     <a href="{% url 'food:detail' item.id %}" class="btn btn-primary">Details</a>
+                    <a href="{% url 'food:update_item' item.id %}" class="btn btn-warning">Edit</a>
+                    <a href="{% url 'food:delete_item' item.id %}" class="btn btn-danger">Delete</a>
                 </div>
             </div>
         {% endfor %}
