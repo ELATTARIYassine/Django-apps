@@ -32,9 +32,18 @@
                     <a class="nav-link" href="#">Link</a>
                 </li>
             </ul>
-            <span class="navbar-text">
-        Navbar text with an inline element
-      </span>
+            {% if user.is_authenticated %}
+                <span class="navbar-text">
+                    <a class="btn btn-danger" href="{% url 'logout' %}">Logout</a>
+                </span>&nbsp;
+                <span class="navbar-text">
+                    <a href="{% url 'profile' %}" class="btn btn-primary">Profile</a>
+                </span>
+            {% else %}
+                <span class="navbar-text">
+                    <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+                </span>
+            {% endif %}
         </div>
     </div>
 </nav>
