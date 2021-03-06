@@ -1,0 +1,7 @@
+body {
+    background-color: beige;
+}
+.toInline {
+    float: left;
+    margin: 10px;
+}

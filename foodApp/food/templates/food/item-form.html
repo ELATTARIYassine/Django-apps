@@ -1,0 +1,9 @@
+{% include 'food/base.html' %}
+
+{% block main %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

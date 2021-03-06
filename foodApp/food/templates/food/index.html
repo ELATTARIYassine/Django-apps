@@ -1,21 +1,17 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <ul>
+{% include 'food/base.html' %}
+
+{% block main %}
+    <div class="container">
         {% for item in items %}
-            <li>
-                <a href="{% url 'food:detail' item.id %}">
-                    {{ item.id }} -- {{ item }}
-                </a>
-            </li>
+            <div class="card toInline" style="width: 18rem;">
+                <img src="{{ item.image }}" class="card-img-top" alt="{{ item.description }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.name }} -- ({{ item.price }}$)</h5>
+                    <p class="card-text">{{ item.description }}.</p>
+                    <a href="{% url 'food:detail' item.id %}" class="btn btn-primary">Details</a>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
-</body>
-</html>
+    </div>
+{% endblock %}
+
