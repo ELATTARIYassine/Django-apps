@@ -3,11 +3,10 @@
 {% block main %}
     <div class="container">
         <div class="card toInline" style="width: 18rem;">
-            <img src="{{ item.image }}" class="card-img-top" alt="{{ item.description }}">
+            <img src="{{ object.image }}" class="card-img-top" alt="{{ object.description }}">
             <div class="card-body">
-                <h5 class="card-title">{{ item.name }} -- ({{ item.price }}$)</h5>
-                <p class="card-text">{{ item.description }}.</p>
-                <a href="{% url 'food:detail' item.id %}" class="btn btn-primary">Details</a>
+                <h5 class="card-title">{{ object.name }} -- ({{ object.price }}$)</h5>
+                <p class="card-text">{{ object.description }}.</p>
             </div>
         </div>
     </div>
