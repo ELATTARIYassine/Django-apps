@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MOvies!</title>
+</head>
+<body>
+<form action="" method="GET">
+    <input type="search" name="name">
+    <button type="submit">Search</button>
+</form>
+<hr>
+<ul>
+    {% for movie in movies %}
+        <li>{{ movie.name }}</li>
+    {% endfor %}
+</ul>
+{% if movies.has_previous %}
+    <a href="?page=1">First</a>
+    <a href="?page={{ movies.previous_page_number }}">Previous</a>
+{% endif %}
+
+Page: {{ movies.number }} of {{ movies.paginator.num_pages }}
+
+{% if movies.has_next %}
+    <a href="?page={{ movies.next_page_number }}">Next</a>
+    <a href="?page={{ movies.paginator.num_pages }}">Last</a>
+{% endif %}
+</body>
+</html>
