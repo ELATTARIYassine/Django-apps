@@ -1,6 +1,10 @@
 {% extends "shop/base.html" %}
 {% load static %}
 
+{% block head %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{% endblock %}
 
 {% block main %}
     <div class="container mt-3">
@@ -33,7 +37,9 @@
                         </ul>
                         <div class="btn-group" role="group" aria-label="Basic outlined example">
                             <a href="product/{{ product.id }}" class="btn btn-outline-primary">View</a>
-                            <button type="button" class="btn btn-outline-primary">Add to cart</button>
+                            <button id="{{ product.id }}" type="button" class="btn btn-outline-primary atc">Add to
+                                cart
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -62,4 +68,26 @@
         </div>
     </div>
 
+{% endblock %}
+
+
+{% block script %}
+    <script>
+        if (localStorage.getItem('cart') == null) {
+            var cart = {};
+        } else {
+            cart = JSON.parse(localStorage.getItem('cart'));
+        }
+        $(document).on('click', '.atc', function () {
+            var item_id = this.id.toString();
+            if (cart[item_id] != undefined) {
+                cart[item_id] = cart[item_id] + 1;
+            } else {
+                cart[item_id] = 1;
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            document.getElementById("cart").innerHTML = "<mark>cart(" + Object.keys(cart).length + ")</mark>";
+            console.log(cart)
+        });
+    </script>
 {% endblock %}
