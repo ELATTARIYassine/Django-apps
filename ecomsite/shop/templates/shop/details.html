@@ -1,0 +1,18 @@
+{% extends "shop/base.html" %}
+
+{% block main %}
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ product.image }}" class="card-img-top" alt="{{ product.title }}">
+                <div class="card-body">
+                    <p class="card-text">{{ product.description }}.</p>
+                    <del><p><strong>Price</strong>: {{ product.price }}</p></del>
+                    <p><strong>New Price:</strong> {{ product.discount_price }}</p>
+                    <p><strong>Category:</strong> {{ product.category }}</p>
+                    <a href="" class="btn btn-primary">Add to cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
