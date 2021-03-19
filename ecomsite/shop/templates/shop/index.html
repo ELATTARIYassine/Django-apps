@@ -79,7 +79,7 @@
             var cartIndex = 1;
             for (var x in cart) {
                 cartString += " | " + cartIndex+" - ";
-                cartString += document.getElementById("nm" + x).innerHTML + " Qty: " + cart[x];
+                cartString += document.getElementById("nm" + x).innerHTML + " Qty: " + cart[x].qty;
                 cartIndex++;
             }
             cartString += '<a href="{% url 'checkout' %}" class="btn btn-warning">Checkout</a>';
@@ -93,14 +93,16 @@
         }
         $(document).on('click', '.atc', function () {
             var item_id = this.id.toString();
+            let productName = document.getElementById("nm"+item_id).innerText;
             if (cart[item_id] !== undefined) {
-                cart[item_id] = cart[item_id] + 1;
+                cart[item_id] = {qty: cart[item_id].qty + 1, name: productName};
             } else {
-                cart[item_id] = 1;
+                cart[item_id] = {qty: 1, name: productName};
             }
             localStorage.setItem('cart', JSON.stringify(cart));
             let cartInTheDOM = document.getElementById("cart");
             cartInTheDOM.innerHTML = "<mark>cart(" + Object.keys(cart).length + ")</mark>";
+            DisplayCart(cart);
             console.log(cart)
 
         });
@@ -109,6 +111,6 @@
             return new bootstrap.Popover(popoverTriggerEl)
         })
         DisplayCart(cart);
-
+        document.getElementById("cart").innerHTML = "<mark>cart(" + Object.keys(cart).length + ")</mark>";
     </script>
 {% endblock %}
