@@ -37,3 +37,7 @@ def resume(request, id):
     response['Content-Disposition'] = 'attachement'
     filename = "resume.pdf"
     return response
+
+def listcvs(request):
+    resumes = Profile.objects.all()
+    return render(request, "generator/resumes.html", context={'resumes': resumes})
