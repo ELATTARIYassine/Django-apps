@@ -9,6 +9,7 @@ def createPost(request):
 	if request.method == 'POST':
 		#print('Printing POST:', request.POST)
 		form = PostForm(request.POST, request.FILES)
+		form.instance.user = request.user
 		if form.is_valid():
 			form.save()
 			return redirect('/')
